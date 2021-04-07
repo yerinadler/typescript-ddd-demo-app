@@ -1,4 +1,6 @@
-# TypeScript DDD Demo Application (For Rentspree Demo)
+# TypeScript DDD Demo Application
+**Note:** For use with RentSpree
+
 This is a demo application based on my [Typescript DDD boilerplate project](https://github.com/yerinadler/typescript-ddd-demo-app)
 
 ## Context
@@ -24,13 +26,13 @@ All of the dependencies between components are inverted using `Inversify` which 
 
 Domain Driven Design (Tactical part) primarily focuses on building rich domain models. Thus, we should focus on it. However, in this project; based on the Onion Architecture, we introduce these components
 
-* Domain Entity - Lives in the domain layer (`Property and User`). Identified with identity uniqeness **[Domain]**
-* Aggregate Root - A domain entity that acts as an entry point to relevant child entities and value objects (See `Property` and `User` in the domain directory). All accesses must be performed through the aggregate root only **[Domain]**
-* Value Object - An object which can be identified with structural equality (See Address in `@domain/application`) **[Domain]**
-* Domain Service - Contains the business logic which doesn't fit into a single entity (See `@domain/application/services/ApplicationRegistration` which handles user application to the property). This is a bit tricky when because some of the domain services might require some external information via HTTP requests like Seneca for RentSpree. This way we define the contract in the domain layer and implement this service in the infrastructure layer instead. Otherwise the implementation details will leak directly into the domain layer which is not allowed conceptually **[Domain / Infrastructure]**
-* Repositories - Handle `persistence` of the aggregate root. The repositories must return the aggregate root not the pure database result as opposed to the `ORM` or `Query Object` **[Infrastructure]**
-* Data Mapper - Handle data transformation between the domain entities and database objects **[Infrastructure]**
-* Data Transfer Objects - Data contracts between layers **[Any layer]**
+* **Domain Entity** - Lives in the domain layer (`Property and User`). Identified with identity uniqeness **[Domain]**
+* **Aggregate Root** - A domain entity that acts as an entry point to relevant child entities and value objects (See `Property` and `User` in the domain directory). All accesses must be performed through the aggregate root only **[Domain]**
+* **Value Object** - An object which can be identified with structural equality (See Address in `@domain/application`) **[Domain]**
+* **Domain Service** - Contains the business logic which doesn't fit into a single entity (See `@domain/application/services/ApplicationRegistration` which handles user application to the property). This is a bit tricky when because some of the domain services might require some external information via HTTP requests like Seneca for RentSpree. This way we define the contract in the domain layer and implement this service in the infrastructure layer instead. Otherwise the implementation details will leak directly into the domain layer which is not allowed conceptually **[Domain / Infrastructure]**
+* **Repositories** - Handle `persistence` of the aggregate root. The repositories must return the aggregate root not the pure database result as opposed to the `ORM` or `Query Object` **[Infrastructure]**
+* **Data Mapper** - Handle data transformation between the domain entities and database objects **[Infrastructure]**
+* **Data Transfer Objects** - Data contracts between layers **[Any layer]**
 ## Technologies
 1. Node.js
 2. TypeScript
